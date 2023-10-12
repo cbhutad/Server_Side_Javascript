@@ -1,0 +1,18 @@
+{
+  "name": "asyncjs",
+  "version": "1.0.0",
+  "description": "Simple demo for asynchronous implementations in javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Cheenmaya Bhutad",
+  "license": "ISC",
+  "dependencies": {
+    "superagent": "^8.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
