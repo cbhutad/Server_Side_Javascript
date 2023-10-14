@@ -69,16 +69,54 @@ function writePro(file, text) {
     })
 }
 
-readFilePro("./dog.txt")
-    .then((data) => {
+// readFilePro("./dog.txt")
+//     .then((data) => {
+//         console.log(`Breed : ${data}`);
+//         data = new String(data);
+//         return superagent.get(`https://dog.ceo/api/breed/${data.toLowerCase()}/images/random`);
+//     }).then((res) => {
+//         console.log(res.body.message);
+//         return writePro("./returned-image.txt", res.body.message);
+//     }).then((msg) => {
+//         console.log(msg);
+//     }).catch((err) => {
+//         console.log(err);
+//     })
+
+/* Now onto async and await. A function marked as async will be executed asynchronously. Here await keyword is being used with a function which return promise. Here the function execution will stop till the promise is resolved. So we get the synchronous execution of functions asynchronously. This will take time. An asynchronous function returns a Promise itself.*/
+
+const getDogPic = async () => {
+
+    try {
+        let data = await readFilePro("dog.txt");
         console.log(`Breed : ${data}`);
-        data = new String(data);
-        return superagent.get(`https://dog.ceo/api/breed/${data.toLowerCase()}/images/random`);
-    }).then((res) => {
-        console.log(res.body.message);
-        return writePro("./returned-image.txt", res.body.message);
-    }).then((msg) => {
-        console.log(msg);
-    }).catch((err) => {
+        data = data.toString();
+
+        const response = await superagent.get(`https://dog.ceo/api/breed/${data.toLowerCase()}/images/random`);
+        console.log(response.body.message);
+
+        await writePro("returned-image.txt", response.body.message);
+        console.log("Random dog pic url saved");
+    } catch(err) {
         console.log(err);
-    })
+    }
+    return "Api call success";
+}
+
+/* This sequence of executions is executed asynchronously. So both start and complete process console are logged and then dogPic console are printed.  */
+// console.log("Started the process");
+// getDogPic();
+// console.log("Process completed");
+
+/* So in order to execute them in synchronous manner we can use await keyword on the promise returned by getDogPic async function. But since we cannot use await standalone way we need to do so inside async function. try and catch added for error handling. */
+(async () => {
+    try {
+    console.log("Started the process");
+    const res = await getDogPic();
+    console.log(res);
+    console.log("Process completed");
+    } catch(err) {
+        console.log(err.message);
+    }
+})();
+
