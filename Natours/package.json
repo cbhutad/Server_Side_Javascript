@@ -1,0 +1,27 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "Node bootcamp project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cbhutad/Server_Side_Javascript/Natours"
+  },
+  "keywords": [
+    "Express",
+    "NodeJs",
+    "Mongodb"
+  ],
+  "author": "Cheenmaya Bhutad",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
